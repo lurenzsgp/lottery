@@ -1,4 +1,4 @@
-const Lottery = require("../index.js").Lottery;
+const Lottery = require("../Lottery.js").Lottery;
 const _ = require('lodash');
 
 it('should display an empty team list', () => {
@@ -116,3 +116,14 @@ it('should return the actual extraction order', () => {
 	expect(extractionResult).toMatch(/Llamas/);
 	expect(extractionResult).toMatch(/Giraffe/);
 });
+
+it('should delete team by name', () => {
+	const lottery = new Lottery();
+	
+	lottery.addTeam('Llamas');
+	lottery.addTeam('Giraffe');
+	lottery.removeTeam('Llamas');
+
+	expect(lottery.getTeamList()).toMatch(/Giraffe/);
+	expect(lottery.getTeamList()).not.toMatch(/Llamas/);
+})

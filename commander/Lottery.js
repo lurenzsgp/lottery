@@ -1,6 +1,6 @@
 const lodash = require('lodash');
 
-class Commander {
+class Lottery {
 	constructor() {
 		this.teams = {};
 		this.extractionOrder = [];
@@ -29,6 +29,10 @@ class Commander {
 		};
 	}
 	
+	removeTeam(teamName) {
+		delete this.teams[teamName];
+	}
+
 	setTickets(teamName, tickets) {
 		if(typeof tickets === 'undefined')
 			throw new Error('Missing tickets');
@@ -63,4 +67,4 @@ class Commander {
 	}
 }
 
-exports.Lottery = Commander
+exports.Lottery = Lottery
