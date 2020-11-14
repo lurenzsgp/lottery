@@ -47,4 +47,13 @@ it.each([
 });
 
 
-it.todo('should display the team list with the team tickets');
+it('should display the team list with the team tickets ordered by tickets', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas', 7);
+	lottery.addTeam('Newpy', 10);
+	lottery.addTeam('Saragozza', 20);
+	lottery.addTeam('Lakers', 1);
+
+	expect(lottery.getTeamList()).toBe('Saragozza - 20 tickets\nNewpy - 10 tickets\nLlamas - 7 tickets\nLakers - 1 ticket');
+});
