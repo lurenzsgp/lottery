@@ -1,7 +1,7 @@
 {
-  "name": "lottery-commander",
+  "name": "lottery-inquirer",
   "version": "0.0.1",
-  "description": "Commander implementation of nba lottery",
+  "description": "Inquirer implementation of nba lottery",
   "main": "index.js",
   "scripts": {
     "test": "jest"
