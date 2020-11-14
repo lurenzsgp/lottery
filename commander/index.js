@@ -3,6 +3,12 @@ const lodash = require('lodash');
 class Commander {
 	constructor() {
 		this.teams = {};
+		this.extractionOrder = [];
+	}
+
+	getExtractionOrder() {
+		return this.extractionOrder.map((teamName, index) => `${index + 1}) ${teamName}`)
+			.join('\n');
 	}
 
 	getTeamList() {
@@ -31,6 +37,29 @@ class Commander {
 			throw new Error('Team is not registered');
 
 		this.addTeam(teamName, tickets);
+	}
+
+	pick() {
+		const urn = this.createUrn();
+		const randomIndex = Math.floor(Math.random() * urn.length);
+
+		const pickedTeamName = urn[randomIndex];
+		delete this.teams[pickedTeamName];
+
+		this.extractionOrder.push(pickedTeamName);
+
+		return pickedTeamName;
+	}
+	
+	createUrn() {
+		const urn = [];
+
+		for(let teamName in this.teams) {
+			const team = this.teams[teamName];
+			urn.push(...(new Array(team.ticket).fill(team.name)));
+		}
+
+		return urn;
 	}
 }
 

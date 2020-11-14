@@ -1,4 +1,5 @@
 const Lottery = require("../index.js").Lottery;
+const _ = require('lodash');
 
 it('should display an empty team list', () => {
         const lottery = new Lottery();
@@ -72,4 +73,46 @@ it('should display the team list with the team tickets ordered by tickets', () =
 	lottery.addTeam('Lakers', 1);
 
 	expect(lottery.getTeamList()).toBe('Saragozza - 20 tickets\nNewpy - 10 tickets\nLlamas - 7 tickets\nLakers - 1 ticket');
+});
+
+it('should extract a random team following the team probabilities', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas', 1);
+
+	expect(lottery.pick()).toBe('Llamas');
+});
+
+it('should not extract two time the same team', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas', 1);
+	lottery.pick();
+
+	expect(lottery.pick()).not.toBe('Llamas');
+});
+
+it('should generate an urn with the exact number of tickets associated to the team', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas', 3);
+	lottery.addTeam('Giraffe', 20);
+	const urn = lottery.createUrn();
+	const count = _.countBy(urn);
+
+	expect(count['Llamas']).toBe(3);
+	expect(count['Giraffe']).toBe(20);
+});
+
+it('should return the actual extraction order', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas', 3);
+	lottery.addTeam('Giraffe', 20);
+	lottery.pick();
+	lottery.pick();
+	const extractionResult = lottery.getExtractionOrder();
+
+	expect(extractionResult).toMatch(/Llamas/);
+	expect(extractionResult).toMatch(/Giraffe/);
 });
