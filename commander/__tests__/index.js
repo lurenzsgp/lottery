@@ -14,7 +14,15 @@ it('should add new team with 0 ticket', () => {
 	expect(lottery.getTeamList()).toBe('Llamas - 0 ticket');
 });
 
-it.todo('should assign ticket to the specified team');
+it('should assign ticket to the specified team', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas');
+	lottery.setTickets('Llamas', 7);
+
+	expect(lottery.getTeamList()).toBe('Llamas - 7 tickets');
+});
+
 it.todo('should add new team with 1 ticket');
 it.todo('should add new team with any positive number of tickets');
 

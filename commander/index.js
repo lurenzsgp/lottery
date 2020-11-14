@@ -2,18 +2,25 @@
 
 class Commander {
 	constructor() {
-		this.teams = [];
+		this.teams = {};
 	}
 
 	getTeamList() {
-		if(!this.teams.length)
-			return '';
+		return Object.keys(this.teams)
+			.map(teamName => {
+				const label = this.teams[teamName] ? 'tickets' : 'ticket';
 
-		return this.teams[0] + ' - 0 ticket';
+				return `${teamName} - ${this.teams[teamName]} ${label}`;
+			})
+			.join('\n');
 	}
 
 	addTeam(teamName) {
-		this.teams.push(teamName);
+		this.teams[teamName] = 0;
+	}
+	
+	setTickets(teamName, tickets) {
+		this.teams[teamName] = tickets;
 	}
 }
 
