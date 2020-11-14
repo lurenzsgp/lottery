@@ -1,0 +1,24 @@
+{
+  "name": "lottery-commander",
+  "version": "0.0.1",
+  "description": "Commander implementation of nba lottery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lurenzsgp/lottery.git"
+  },
+  "keywords": [
+    "commander",
+    "nba",
+    "lottery"
+  ],
+  "author": "Lorenzo Cazzoli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lurenzsgp/lottery/issues"
+  },
+  "homepage": "https://github.com/lurenzsgp/lottery#readme"
+}
