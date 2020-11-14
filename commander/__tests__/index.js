@@ -11,10 +11,10 @@ it('should add new team with 0 ticket', () => {
 	
 	lottery.addTeam('Llamas');
 
-	expect(lottery.getTeamList()).toBe('Llamas - 0 ticket');
+	expect(lottery.getTeamList()).toBe('Llamas - 0 tickets');
 });
 
-it('should assign ticket to the specified team', () => {
+it('should assign tickets to the specified team', () => {
 	const lottery = new Lottery();
 
 	lottery.addTeam('Llamas');
@@ -26,12 +26,25 @@ it('should assign ticket to the specified team', () => {
 it('should add new team with 1 ticket', () => {
 	const lottery = new Lottery();
 
-	lottery.addTeam('Llamas', 7);
+	lottery.addTeam('Llamas', 1);
 
-	expect(lottery.getTeamList()).toBe('Llamas - 7 tickets');
+	expect(lottery.getTeamList()).toBe('Llamas - 1 ticket');
 });
 
-it.todo('should add new team with any positive number of tickets');
+it.each([
+	['Llamas', -1, 'Llamas - 0 tickets'],
+	['Llamas', 0, 'Llamas - 0 tickets'],
+	['Llamas', 1, 'Llamas - 1 ticket'],
+	['Llamas', 3, 'Llamas - 3 tickets'],
+	['Giraffe', 10, 'Giraffe - 10 tickets'],
+	['Giraffe', 20, 'Giraffe - 20 tickets']
+])('should add new team with any positive number of tickets', (teamName, tickets, result) => {
+	const lottery = new Lottery();
+
+	lottery.addTeam(teamName, tickets);
+
+	expect(lottery.getTeamList()).toBe(result);
+});
 
 
 it.todo('should display the team list with the team tickets');

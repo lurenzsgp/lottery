@@ -8,7 +8,7 @@ class Commander {
 	getTeamList() {
 		return Object.keys(this.teams)
 			.map(teamName => {
-				const label = this.teams[teamName] ? 'tickets' : 'ticket';
+				const label = this.teams[teamName] === 1 ? 'ticket' : 'tickets';
 
 				return `${teamName} - ${this.teams[teamName]} ${label}`;
 			})
@@ -16,7 +16,7 @@ class Commander {
 	}
 
 	addTeam(teamName, tickets = 0) {
-		this.teams[teamName] = tickets;
+		this.teams[teamName] = tickets > 0 ? tickets : 0;
 	}
 	
 	setTickets(teamName, tickets) {
