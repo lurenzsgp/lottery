@@ -15,8 +15,8 @@ class Commander {
 			.join('\n');
 	}
 
-	addTeam(teamName) {
-		this.teams[teamName] = 0;
+	addTeam(teamName, tickets = 0) {
+		this.teams[teamName] = tickets;
 	}
 	
 	setTickets(teamName, tickets) {
