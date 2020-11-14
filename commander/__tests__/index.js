@@ -23,6 +23,14 @@ it('should assign tickets to the specified team', () => {
 	expect(lottery.getTeamList()).toBe('Llamas - 7 tickets');
 });
 
+it('should throw error if setTickets is called without the ticket number', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas');
+
+	expect(() => lottery.setTickets('Llamas')).toThrow();
+});
+
 it('should add new team with 1 ticket', () => {
 	const lottery = new Lottery();
 
