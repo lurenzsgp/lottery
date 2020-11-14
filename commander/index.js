@@ -26,6 +26,9 @@ class Commander {
 	setTickets(teamName, tickets) {
 		if(typeof tickets === 'undefined')
 			throw new Error('Missing tickets');
+		
+		if(!this.teams.hasOwnProperty(teamName))
+			throw new Error('Team is not registered');
 
 		this.addTeam(teamName, tickets);
 	}

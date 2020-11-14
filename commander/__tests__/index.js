@@ -31,6 +31,14 @@ it('should throw error if setTickets is called without the ticket number', () =>
 	expect(() => lottery.setTickets('Llamas')).toThrow();
 });
 
+it('should throw error if setTickets is called with an unregistered team', () => {
+	const lottery = new Lottery();
+
+	lottery.addTeam('Llamas');
+
+	expect(() => lottery.setTickets('Giraffe', 1)).toThrow();
+});
+
 it('should add new team with 1 ticket', () => {
 	const lottery = new Lottery();
 
